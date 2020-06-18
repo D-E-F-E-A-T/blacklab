@@ -17,7 +17,7 @@ The following is a detail description of my virtualized homelab lab with
 [KVM] hypervisor to supplement my hands-on labs for information security.
 
 I don't have powerful hardware at disposal so I decide to reuse my old laptop
-for this purpose.Therefore I intend to maintain this post up-to-date whenever 
+for this purpose.Therefore I intend to maintain this repo up-to-date whenever 
 there's a hardware change/upgrade. 
 
 Homelab Overview
