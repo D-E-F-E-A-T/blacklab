@@ -1,0 +1,14 @@
+<!--
+WARNING: THIS IS AN AUTO-GENERATED FILE. CHANGES TO IT ARE LIKELY TO BE
+OVERWRITTEN AND LOST. Changes to this xml configuration should be made using:
+  virsh net-edit BootToRoot
+or other application using the libvirt API.
+-->
+
+<network>
+  <name>BootToRoot</name>
+  <uuid>a7485932-067e-47b0-903c-21ab71a645a8</uuid>
+  <bridge name='virbr3' stp='on' delay='0'/>
+  <mac address='52:54:00:aa:a2:a9'/>
+  <domain name='VulnNetw'/>
+</network>

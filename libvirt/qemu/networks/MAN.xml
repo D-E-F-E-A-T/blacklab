@@ -1,0 +1,14 @@
+<!--
+WARNING: THIS IS AN AUTO-GENERATED FILE. CHANGES TO IT ARE LIKELY TO BE
+OVERWRITTEN AND LOST. Changes to this xml configuration should be made using:
+  virsh net-edit MAN
+or other application using the libvirt API.
+-->
+
+<network>
+  <name>MAN</name>
+  <uuid>f2f2ea57-f1db-4fa0-8628-ac15ee9f2b7e</uuid>
+  <bridge name='virbr0' stp='on' delay='0'/>
+  <mac address='52:54:00:ea:f7:07'/>
+  <domain name='LAN1'/>
+</network>

@@ -1,0 +1,121 @@
+
+<installedpackages>
+	<package>
+		<name>OpenVPN Client Export Utility</name>
+		<internal_name>openvpn-client-export</internal_name>
+		<descr><![CDATA[Allows a pre-configured OpenVPN Windows Client or Mac OS X's Viscosity configuration bundle to be exported directly from pfSense.]]></descr>
+		<version>1.4.18_4</version>
+		<configurationfile>openvpn-client-export.xml</configurationfile>
+		<tabs>
+			<tab>
+				<name>Client Export</name>
+				<tabgroup>OpenVPN</tabgroup>
+				<url>/vpn_openvpn_export.php</url>
+			</tab>
+			<tab>
+				<name>Shared Key Export</name>
+				<tabgroup>OpenVPN</tabgroup>
+				<url>/vpn_openvpn_export_shared.php</url>
+			</tab>
+		</tabs>
+		<include_file>/usr/local/pkg/openvpn-client-export.inc</include_file>
+	</package>
+	<package>
+		<name>pfBlockerNG</name>
+		<descr><![CDATA[pfBlockerNG is the Next Generation of pfBlocker.&lt;br /&gt;
+			Manage IPv4/v6 List Sources into 'Deny, Permit or Match' formats.&lt;br /&gt;
+			GeoIP database by MaxMind Inc. (GeoLite2 Free version).&lt;br /&gt;
+			De-Duplication, Suppression, and Reputation enhancements.&lt;br /&gt;
+			Provision to download from diverse List formats.&lt;br /&gt;
+			Advanced Integration for Proofpoint ET IQRisk IP Reputation Threat Sources.&lt;br /&gt;
+			Domain Name (DNSBL) blocking via Unbound DNS Resolver.]]></descr>
+		<pkginfolink>https://forum.pfsense.org/index.php?topic=102470.0</pkginfolink>
+		<version>2.1.4_17</version>
+		<configurationfile>pfblockerng.xml</configurationfile>
+		<tabs>
+			<tab>
+				<text><![CDATA[General]]></text>
+				<url>/pkg_edit.php?xml=pfblockerng.xml</url>
+				<active></active>
+			</tab>
+			<tab>
+				<text><![CDATA[Update]]></text>
+				<url>/pfblockerng/pfblockerng_update.php</url>
+			</tab>
+			<tab>
+				<text><![CDATA[Alerts]]></text>
+				<url>/pfblockerng/pfblockerng_alerts.php</url>
+			</tab>
+			<tab>
+				<text><![CDATA[Reputation]]></text>
+				<url>/pkg_edit.php?xml=/pfblockerng/pfblockerng_reputation.xml</url>
+			</tab>
+			<tab>
+				<text><![CDATA[IPv4]]></text>
+				<url>/pkg.php?xml=/pfblockerng/pfblockerng_v4lists.xml</url>
+			</tab>
+			<tab>
+				<text><![CDATA[IPv6]]></text>
+				<url>/pkg.php?xml=/pfblockerng/pfblockerng_v6lists.xml</url>
+			</tab>
+			<tab>
+				<text><![CDATA[DNSBL]]></text>
+				<url>/pkg_edit.php?xml=/pfblockerng/pfblockerng_dnsbl.xml</url>
+			</tab>
+			<tab>
+				<text><![CDATA[GeoIP]]></text>
+				<url>/pkg_edit.php?xml=/pfblockerng/pfblockerng_TopSpammers.xml</url>
+			</tab>
+			<tab>
+				<text><![CDATA[Logs]]></text>
+				<url>/pfblockerng/pfblockerng_log.php</url>
+			</tab>
+			<tab>
+				<text><![CDATA[Sync]]></text>
+				<url>/pkg_edit.php?xml=/pfblockerng/pfblockerng_sync.xml</url>
+			</tab>
+		</tabs>
+		<include_file>/usr/local/pkg/pfblockerng/pfblockerng.inc</include_file>
+	</package>
+	<pfblockerng>
+		<config>
+			<enable_cb>on</enable_cb>
+			<pfb_keep>on</pfb_keep>
+			<pfb_interval>1</pfb_interval>
+			<pfb_min>0</pfb_min>
+			<pfb_hour>0</pfb_hour>
+			<pfb_dailystart>0</pfb_dailystart>
+			<enable_dup></enable_dup>
+			<enable_agg></enable_agg>
+			<suppression></suppression>
+			<enable_log></enable_log>
+			<maxmind_locale>en</maxmind_locale>
+			<database_cc></database_cc>
+			<skipfeed>0</skipfeed>
+			<log_maxlines>20000</log_maxlines>
+			<inbound_interface>wan</inbound_interface>
+			<inbound_deny_action>block</inbound_deny_action>
+			<outbound_interface>lan</outbound_interface>
+			<outbound_deny_action>reject</outbound_deny_action>
+			<openvpn_action>on</openvpn_action>
+			<ipsec_action></ipsec_action>
+			<enable_float></enable_float>
+			<pass_order>order_0</pass_order>
+			<autorule_suffix>autorule</autorule_suffix>
+			<killstates></killstates>
+			<credits></credits>
+		</config>
+	</pfblockerng>
+	<menu>
+		<name>pfBlockerNG</name>
+		<configfile>pfblockerng.xml</configfile>
+		<section>Firewall</section>
+		<url>/pkg_edit.php?xml=pfblockerng.xml</url>
+	</menu>
+	<service>
+		<name>dnsbl</name>
+		<rcfile>dnsbl.sh</rcfile>
+		<executable>lighttpd_pfb</executable>
+		<description><![CDATA[pfBlockerNG DNSBL Web Server]]></description>
+	</service>
+</installedpackages>

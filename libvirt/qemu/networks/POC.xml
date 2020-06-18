@@ -1,0 +1,14 @@
+<!--
+WARNING: THIS IS AN AUTO-GENERATED FILE. CHANGES TO IT ARE LIKELY TO BE
+OVERWRITTEN AND LOST. Changes to this xml configuration should be made using:
+  virsh net-edit POC
+or other application using the libvirt API.
+-->
+
+<network>
+  <name>POC</name>
+  <uuid>b7790fbb-14aa-4585-89c7-c25c5e258be8</uuid>
+  <bridge name='virbr4' stp='on' delay='0'/>
+  <mac address='52:54:00:56:36:e9'/>
+  <domain name='TestLab'/>
+</network>

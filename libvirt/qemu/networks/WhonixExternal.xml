@@ -1,0 +1,14 @@
+<!--
+WARNING: THIS IS AN AUTO-GENERATED FILE. CHANGES TO IT ARE LIKELY TO BE
+OVERWRITTEN AND LOST. Changes to this xml configuration should be made using:
+  virsh net-edit WhonixExternal
+or other application using the libvirt API.
+-->
+
+<network>
+  <name>WhonixExternal</name>
+  <uuid>a40dd9b2-9298-4062-9ee2-dc3a288ebd51</uuid>
+  <bridge name='virbr1' stp='on' delay='0'/>
+  <mac address='52:54:00:4e:f4:a9'/>
+  <domain name='WhonixExternal'/>
+</network>

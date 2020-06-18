@@ -1,0 +1,14 @@
+<!--
+WARNING: THIS IS AN AUTO-GENERATED FILE. CHANGES TO IT ARE LIKELY TO BE
+OVERWRITTEN AND LOST. Changes to this xml configuration should be made using:
+  virsh net-edit WinAD
+or other application using the libvirt API.
+-->
+
+<network>
+  <name>WinAD</name>
+  <uuid>df8708c4-1107-4940-99dd-cbf78259e4c6</uuid>
+  <bridge name='virbr5' stp='on' delay='0'/>
+  <mac address='52:54:00:89:08:22'/>
+  <domain name='VulnNet2'/>
+</network>

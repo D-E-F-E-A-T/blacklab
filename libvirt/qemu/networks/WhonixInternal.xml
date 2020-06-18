@@ -1,0 +1,14 @@
+<!--
+WARNING: THIS IS AN AUTO-GENERATED FILE. CHANGES TO IT ARE LIKELY TO BE
+OVERWRITTEN AND LOST. Changes to this xml configuration should be made using:
+  virsh net-edit WhonixInternal
+or other application using the libvirt API.
+-->
+
+<network>
+  <name>WhonixInternal</name>
+  <uuid>5ae30bab-45dc-4551-a71e-eb294cf9ea79</uuid>
+  <bridge name='virbr2' stp='on' delay='0'/>
+  <mac address='52:54:00:ed:dd:39'/>
+  <domain name='WhonixInternal'/>
+</network>
