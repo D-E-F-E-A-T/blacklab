@@ -2,6 +2,7 @@
 # Author: https://github.com/mohabaks
 # Description: A quick script to download and setup prometheus with node_exporter and grafana
 #              for homelab monitoring [Debian GNU/Linux 9 (stretch)]
+#
 # NOTE: to avoid typing sudo command run this script as root
 
 # Edit the value with lates version of the package and checksum
