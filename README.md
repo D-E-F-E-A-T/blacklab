@@ -497,4 +497,4 @@ Currently running a [plex] media server.
 [SeedLabs]: https://github.com/onlurking/awesome-infosec#laboratories 
 [prometheus]: https://prometheus.io/
 [grafana]: https://prometheus.io/
-[script]: https://gist.github.com/mohabaks/aab7e7083acadb77c562a5b96413647d
+[script]: https://github.com/mohabaks/blacklab/blob/master/scripts/prometheus_grafana_quick_install

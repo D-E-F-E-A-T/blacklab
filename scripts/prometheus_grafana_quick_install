@@ -1,0 +1,95 @@
+#!/bin/bash
+# Author: https://github.com/mohabaks
+# Description: A quick script to download and setup prometheus with node_exporter and grafana
+#              for homelab monitoring [Debian GNU/Linux 9 (stretch)]
+# NOTE: to avoid typing sudo command run this script as root
+
+# Edit the value with lates version of the package and checksum
+# prometheus
+prometheus_package='prometheus-2.19.0.linux-amd64.tar.gz'
+prometheus_version='v2.19.0'
+prometheus_checksum='447cf576cf1796b54daa14f5017100611392d0f7ecbc029163abed2ffc8a41fa'
+prometheus_download_checksum=$(sha256sum "$prometheus_package" |cut -d " " -f1)
+archive_prometheus_dir='prometheus-2.19.0.linux-amd64'
+# node_exporter
+node_exporter_package='node_exporter-1.0.0.linux-amd64.tar.gz'
+node_exporter_version='v1.0.0'
+node_exporter_checksum='fae88be0aa33c8ae22340723f9b4a4e519e67d2969da7a27751e755db7e75788'
+node_exporter_download_checksum=$(sha256sum "$node_exporter_package" |cut -d " " -f1)
+archive_node_exporter_dir='node_exporter-1.0.0.linux-amd64'
+# grafana
+grafana_package='grafana_7.0.3_amd64.deb'
+
+# prepare prometheus 
+prometheus_prep(){
+# Create a separate user
+echo "[+] Creating prometheus user"
+sudo useradd --no-create-home --shell /bin/false prometheus
+echo "[+] Creating node_exporter user"
+sudo useradd --no-create-home --shell /bin/false node_exporter
+echo "[+] Creating prometheus directory"
+sudo mkdir /etc/prometheus
+sudo mkdir /var/lib/prometheus
+echo "[+] Setting the user and group ownership for the new directories"
+sudo chown prometheus:prometheus /etc/prometheus
+sudo chown prometheus:prometheus /var/lib/prometheus
+echo "[+] Downloading prometheus"
+curl -LO https://github.com/prometheus/prometheus/releases/download/"$prometheus_version"/"$prometheus_package"
+echo "[+] Checkng if package downloaded matches the checksum"
+if [[ "$prometheus_download_checksum" != "$prometheus_checksum" ]];then
+	echo -e "[-] \033[checksum doesn't match\033[0m\n[*] Delete the file and run the script again"
+	exit 1
+fi
+echo "[+] Unpack the downloaded archive"
+tar xvf "$prometheus_package"
+echo "[+] Copying prometheus the binaries"
+sudo cp -r "$archive_prometheus_dir"/prometheus /usr/local/bin/
+sudo cp -r "$archive_prometheus_dir"/promtool /usr/local/bin/
+echo "[+] Setting the user and group ownership on the binaries to the prometheus user"
+sudo chown prometheus:prometheus /usr/local/bin/prometheus
+sudo chown prometheus:prometheus /usr/local/bin/promtool
+echo "[+] Copying the console and console_libraries directories to /etc/prometheus"
+sudo cp -r "$archive_prometheus_dir"/consoles /etc/prometheus
+sudo cp -r "$archive_prometheus_dir"/console_libraries /etc/prometheus
+echo "[+] Setting the user and group ownership on the directories"
+sudo chown -R prometheus:prometheus /etc/prometheus/consoles
+sudo chown -R prometheus:prometheus /etc/prometheus/console_libraries
+echo "[+] Removing leftover from the download"
+rm -rf "$prometheus_package" "$archive_prometheus_dir"
+echo "[+] Done setting up prometheus. Now you can editing /etc/prometheus/prometheus.yml"
+}
+
+# prepare node_exporter
+node_exporter_prep(){
+echo "[+] Downloading node_exporter"
+curl -LO https://github.com/prometheus/node_exporter/releases/download/"$node_exporter_version"/"$node_exporter_package"
+echo "[+] Verifying the integrity of the node_exporter downloaded"
+if [[ "$node_exporter_download_checksum" != "$node_exporter_checksum" ]];then
+	echo -e "[-] \033[31mchecksum doesn't match\033[0m\n[*] Delete the file and run the script again"
+	exit
+fi
+echo "[+] Unpacking the archive"
+tar xvf "$node_exporter_package"
+echo "[+] Copying node_exporter binary and set permissions"
+sudo cp "$archive_node_exporter_dir"/node_exporter /usr/local/bin
+sudo chown node_exporter:node_exporter /usr/local/bin/node_exporter
+echo "[+] Removing the node_exporter leftover"
+rm -rf "$node_exporter_package" "$archive_node_exporter_dir"
+echo "[+] Done setting up node_exporter"
+}
+
+# prepare grafana
+grafana_prep(){
+echo "[+] Downloading dependecies with apt-get"
+sudo apt-get install -y adduser libfontconfig1
+echo "[+] Downloading grafana package"
+wget https://dl.grafana.com/oss/release/"$grafana_package"
+echo "[+] Installing $grafana_package"
+sudo dpkg -i 
+echo "[+] Done setting up grafana"
+}
+
+# Uncomment the following for prometheus,node_exporter and grafana installation
+#prometheus_prep
+#node_exporter_prep
+#node_exporter_prep
