@@ -408,7 +408,7 @@ help us do the rest of the settings.
 Navigate to `interfaces->Assignments->Add` compare the pfSense interface MAC 
 address with the one added from the virt-manager. Make sure not to add gateway for the networks.
 
-![pfSense Networks](https://i.imgur.com/EUtl0Qz.gif)
+![pfSenseNetwork](https://github.com/mohabaks/blacklab/blob/master/Demo/pfSenseNetwork.gif)
 
 
 #### Accessing the pfSense
@@ -427,7 +427,7 @@ new VMs that we deploy.
 Once you have openvpn configured you should be able to access the isolated
 network(s).
 
-![pfSense OpenVPN](https://i.imgur.com/OVxhZ9p.gif)
+![pfSenseOpenVPN](https://github.com/mohabaks/blacklab/blob/master/Demo/OpenVPN.gif)
 
 __NOTE__: This pfSense VM is always running.
 
